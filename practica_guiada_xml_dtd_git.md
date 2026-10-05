@@ -147,9 +147,9 @@ Registre:
 
 | Modificación       | ¿Bien formado? | ¿Válido? | ¿Por qué? |
  |--------------------|----------------|----------|-----------|
- | Cambiar `para`     |                          |   |
-| Cambiar orden      |          |                  | 
-| Agregar `telefono` |     |                      |
+ | Cambiar `para`     | si             | no       |cumple con la sintaxis xml pero el dtd espera la etiqueta para y no reconoce destinatario.
+| Cambiar orden      | si             | no       | las etiquetas abren y cierran bien pero el dtd exige el orden exacto (para,de,titulo,contenido)
+| Agregar `telefono` | si             | no       |es correcto, pero el dtd no tiene declarado el elemento telefono dentro de nota.
 
 Observe los cambios:
 
@@ -181,13 +181,13 @@ Sustituya la referencia externa por:
 
 Complete la comparación:
 
-| Característica                      | DTD interno | DTD externo |
-|-------------------------------------|-------------|-------------|
-| Ubicación                           |             |             |                                    
-| Reutilizable entre XML              |             |             |            
-| Archivo adicional                   |             |             |                  
-| Conveniente para un único documento |             |             |   
-| Conveniente para muchos documentos  |             |             |   
+| Característica                      | DTD interno            | DTD externo                        |
+|-------------------------------------|------------------------|------------------------------------|
+| Ubicación                           | dentro del archivo xml | en un archivo independiente (.dtd) |                                    
+| Reutilizable entre XML              | no                     | si                                 |            
+| Archivo adicional                   | no                     | si                                 |                  
+| Conveniente para un único documento | si                     | no                                 |   
+| Conveniente para muchos documentos  | no                      | si                                 |   
 
 Registre:
 
