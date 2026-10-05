@@ -50,22 +50,22 @@ git log --oneline
 A partir del texto del pedido, identifique destinatario, artículo,
 dirección y fecha de entrega.
 
-| Información  | Valor identificado | Elemento XML propuesto |
-|--------------|--------------------|------------------------|
-| Destinatario |                    |                        |
-| Artículo     |                    |                        |
-| Dirección    |                    |                        |
-| Fecha        |                    |                        |
+| Información  | Valor identificado | Elemento XML propuesto                 |
+|--------------|--------------------|----------------------------------------|
+| Destinatario | Angel Lerma        | &lt;destinatario&gt; o &lt;cliente&gt; |
+| Artículo     | Laptop             | &lt;articulo&gt; o &lt;producto&gt;    |
+| Dirección    | Unison 5J 203      | &lt;direccion&gt;                      |
+| Fecha        | 2026-10-05         | &lt;fecha&gt;                          |
 
 Proponga una jerarquía. Considere si la dirección debe descomponerse en
 calle, número, piso y letra.
 
 ### Preguntas
 
-1.  ¿Conviene almacenar la dirección como un único texto?
-2.  ¿Qué ventajas tendría separar sus componentes?
-3.  ¿Cómo debería almacenarse una fecha para facilitar su procesamiento?
-4.  ¿Qué información podría ser atributo y cuál elemento?
+1.  ¿Conviene almacenar la dirección como un único texto? no por que puede dificultar las busquedas o validaciones por ejemplo al buscar todos los pedidos de un mismo area
+2.  ¿Qué ventajas tendría separar sus componentes? facilita la extraccion de datos especificos, permite ordenar o filtrar informacion mas facilmente 
+3.  ¿Cómo debería almacenarse una fecha para facilitar su procesamiento? utilizando un formato estandar YYYY-MM-DD (ISO 8601) 
+4.  ¿Qué información podría ser atributo y cuál elemento? los elementos la informacion principal que representa el contenido del negocio como destinatario direccion articulo y los atributos metadatos o identificadores que describen a las entidades como id o codigo del articulo.
 
 Cree `ejercicio1/pedido.xml` comenzando con:
 

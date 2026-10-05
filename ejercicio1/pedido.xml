@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedido id="101">
+    <destinatario>Angel Lerma</destinatario>
+    <direccion>
+        <calle>Unison 5J 203</calle>
+        <numero>203</numero>
+        <piso>2</piso>
+        <letra>J</letra>
+    </direccion>
+    <articulo codigo="A-554">Laptop</articulo>
+    <fecha_entrega>2026-10-05</fecha_entrega>
+</pedido>
