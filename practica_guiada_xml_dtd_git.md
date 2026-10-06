@@ -181,13 +181,13 @@ Sustituya la referencia externa por:
 
 Complete la comparación:
 
-| Característica                      | DTD interno            | DTD externo                        |
-|-------------------------------------|------------------------|------------------------------------|
-| Ubicación                           | dentro del archivo xml | en un archivo independiente (.dtd) |                                    
-| Reutilizable entre XML              | no                     | si                                 |            
-| Archivo adicional                   | no                     | si                                 |                  
-| Conveniente para un único documento | si                     | no                                 |   
-| Conveniente para muchos documentos  | no                      | si                                 |   
+| Característica                      | DTD interno            | DTD externo                         |
+|-------------------------------------|------------------------|-------------------------------------|
+| Ubicación                           | dentro del archivo xml | en un archivo independiente (.dtd)1 |                                    
+| Reutilizable entre XML              | no                     | si                                  |            
+| Archivo adicional                   | no                     | si                                  |                  
+| Conveniente para un único documento | si                     | no                                  |   
+| Conveniente para muchos documentos  | no                      | si                                  |   
 
 Registre:
 
@@ -259,12 +259,12 @@ y determine cómo expresar la enumeración.
 
 Pruebe:
 
- | Caso              | Predicción | Resultado | Explicación |
-|-------------------|------------|-----------|-------------|
- | `tipo="familiar"` |            |           |             |
- | `tipo="habitual"` |            |           |             |
-| `tipo="temporal"` |            |           |             |
-| sin `tipo`        |            |           | 
+ | Caso              | Predicción | Resultado | Explicación                                            |
+|-------------------|------------|-----------|--------------------------------------------------------|
+ | `tipo="familiar"` | valido     | valido    | es uno de los valores permitidos en la enumeracion dtd |
+ | `tipo="habitual"` | valido     | valido    | es uno de los valores permitidos en la enumeracion dtd |
+| `tipo="temporal"` | invalido   | invalido  | tempral no esta definido en la lista permitida         |
+| sin `tipo`        | invalido   | invalido  | el atributo es #REQUIRED por lo que no se puede omitir
 
 ## 9. Git para desarrollar una variante
 
