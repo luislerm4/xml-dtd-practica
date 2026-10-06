@@ -314,38 +314,80 @@ Documente:
 # Práctica XML y DTD
 
 ## Objetivo
+Aprender a estructurar y validar XMLs con DTD (internos y externos), manejando reglas, atributos y el historial con Git.
 
 ## Ejercicio 1: Pedido
 ### Modelo propuesto
+Estructura sencilla para un pedido:
+
+- <pedido> (raíz con id)
+  - <destinatario>
+  - <direccion>
+    - <calle>
+    - <numero>
+    - <piso>
+    - <letra>
+  - <articulo> (con atributo codigo)
+  - <fecha_entrega>
+
 ### Decisiones de diseño
+- Dirección dividida: Se separaron calle, número, piso y letra para poder filtrar o buscar datos específicos sin rodeos.
+- Formato de fecha: Usé ISO 8601 (YYYY-MM-DD) para evitar problemas al ordenar datos.
+- Atributos: Se usaron solo para IDs y códigos; lo demás va como elemento.
 
 ## Ejercicio 2: Nota
 ### DTD externo
+Se definieron las reglas en nota.dtd y se vinculó con <!DOCTYPE nota SYSTEM "nota.dtd">.
+
 ### DTD interno
+Se probó meter las reglas dentro del mismo XML (nota-interno.xml) usando <!DOCTYPE nota [ ... ]>.
+
 ### Pruebas realizadas
+- Cambiar <para> por <destinatario>: Bien formado, pero no válido (el DTD espera <para>).
+- Cambiar el orden: Bien formado, pero inválido al romper la secuencia (para, de, titulo, contenido).
+- Agregar <telefono>: Bien formado, pero inválido porque <telefono> no existe en el DTD.
 
 ## Ejercicio 3: Matrícula
 ### Modelo
+Estructura para matrículas:
+- Raíz: <matricula>
+- Compuestos: <personal>, <domicilios>, <pago>
+- Simples: <dni>, <nombre>, <titulacion>, <curso_academico>, <domicilio>, <tipo_matricula>
+
 ### Cardinalidad
+Se usó + en <!ELEMENT domicilios (domicilio+)> para obligar a que exista al menos un domicilio. Sin domicilios, el XML está bien formado pero falla en la validación.
+
 ### Restricción del atributo tipo
+Con <!ATTLIST domicilio tipo (familiar | habitual) #REQUIRED>, el atributo tipo pasa a ser obligatorio y solo acepta familiar o habitual.
+
 ### DTD externo
+Definido en matricula.dtd y enlazado desde matricula.xml.
+
 ### DTD interno
+Se armó en la rama dtd-interno-matricula (matricula-interno.xml) y luego se integró a main.
+
 ### Pruebas realizadas
+- tipo="familiar" / tipo="habitual": Válidos.
+- tipo="temporal": Inválido (valor fuera de la lista).
+- Sin tipo: Inválido (es obligatorio).
 
 ## Conclusiones
+- Bien formado vs. Válido: Estar bien formado es solo cumplir la sintaxis; ser válido es pasar las reglas del DTD.
+- DTD Interno vs. Externo: El interno sirve para casos puntuales; el externo para reutilizar reglas en varios archivos.
+- Git: Las ramas permiten experimentar con variantes sin arriesgar la versión principal.
 ```
 
 Responda:
 
-1.  ¿Cuál es la diferencia entre XML bien formado y XML válido?
-2.  ¿Qué función cumple un DTD?
-3.  ¿Qué diferencia existe entre DTD interno y externo?
-4.  ¿Cómo se expresa cardinalidad en DTD?
-5.  ¿Cómo puede restringirse un atributo a determinados valores?
-6.  ¿Qué ventaja proporcionó Git durante las pruebas?
-7.  ¿Qué utilidad tuvieron `git diff` y `git restore`?
+1.  ¿Cuál es la diferencia entre XML bien formado y XML válido? bien formado es cumplir la sintaxis basica de etiquetas y valido es ademas seguir la estructura y reglas del dtd
+2.  ¿Qué función cumple un DTD? definir las reglas los elementos permitidos y atributos para que la estructura del xml sea consistente
+3.  ¿Qué diferencia existe entre DTD interno y externo? el interno va metido en el mismo xml con doctype y el externo en un archivo dtd aparte para reusarlo en varios xmls
+4.  ¿Cómo se expresa cardinalidad en DTD? con los operadores signo de interrogacion para 0 o 1 asterisco para 0 o mas y mas para 1 o mas
+5.  ¿Cómo puede restringirse un atributo a determinados valores? metiendo una lista de opciones entre parentesis con attlist separadas por barras como familiar o habitual y poniendo required si es obligatorio
+6.  ¿Qué ventaja proporcionó Git durante las pruebas? llevar historial de cambios probar cosas sin perder el codigo que ya servia y tener todo registrado paso a paso
+7.  ¿Qué utilidad tuvieron `git diff` y `git restore`? git diff para ver que le moviste exactamente al codigo y git restore para borrar las pruebas feas y regresar al archivo bueno
 8.  ¿Qué ventaja proporcionó una rama para desarrollar una solución
-    alternativa?
+    alternativa? probar la variante en un entorno aislado sin arruinar la rama main y luego fusionarla cuando ya quedo
 
 ## 12. Estructura final esperada
 
